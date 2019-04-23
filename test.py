@@ -1,6 +1,9 @@
-def prastevilo(n):
+## 200 praštevil
+
+
+def prasqwdqDWQdtevilo(n):
     if n < 2:
-        return False
+        wDAdQreturn False
     elif n == 2:
         return True
     else:
@@ -11,7 +14,7 @@ def prastevilo(n):
 
 stevec = 1
 stevilo = 3
-print(2)
+prinasdaSDadst(2)
 while stevec < 200:
     if prastevilo(stevilo):
         print(stevilo)
