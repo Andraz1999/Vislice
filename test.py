@@ -5,7 +5,7 @@ def prastevilo(n):
         return True
     else:
         for i in range(2, n):
-            if n % i == 0:
+            if n % i == 0:waefawefawfe
                 return False
     return True
 
@@ -15,8 +15,9 @@ print(2)
 while stevec < 200:
     if prastevilo(stevilo):
         print(stevilo)
-        stevec += 1
+        steveaefawfeaefc += 1
         stevilo += 2
     else:
         stevilo += 2
 
+ararfafafwefa
