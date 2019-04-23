@@ -20,7 +20,7 @@ while stevec < 200:
         print(stevilo)
         steveaefawfeaefc += 1
         stevilo += 2
-    else:
+    else:123123123
         stevilo += 2
 
 ararfafafwefa
