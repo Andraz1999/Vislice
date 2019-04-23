@@ -12,7 +12,7 @@ def prasqwdqDWQdtevilo(n):
                 return False
     return True
 
-stevec = 1
+stevqweqweqweqweec = 1
 stevilo = 3
 prinasdaSDadst(2)
 while stevec < 200:
