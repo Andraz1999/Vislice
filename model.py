@@ -85,7 +85,7 @@ class Igra:
 with open('besede.txt', 'r', encoding='UTF-8') as vhod:
     read = vhod.read()
     read = read.split('\n')
-    bazen_besed = tuple(read[:-1]) 
+    bazen_besed = tuple(read) 
 
 def nova_igra():
     import random
