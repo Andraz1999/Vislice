@@ -109,7 +109,7 @@ def izpis_zmage(igra):
     return niz
 
 def izpis_poraza(igra):
-    niz = f'Včasih pač pride "štk", pravilno geslo je {igra.geslo} poskusi še enkrat...'
+    niz = f'Včasih pač pride "štk", pravilno geslo je {igra.geslo}, poskusi še enkrat...'
     return niz
 
 def zahtevaj_vnos():
@@ -131,7 +131,7 @@ def zazeni_vmesnik():
     while True:
         print(izpis_igre(igra))
 
-        poskus = zahtevaj_vnos() #ŠE nimam napisano
+        poskus = zahtevaj_vnos() 
         
 #        if not preveri_vnos(poskus):
 #            continue
@@ -139,10 +139,12 @@ def zazeni_vmesnik():
         rezultat = igra.ugibaj(poskus)
         # preverimo, če je igre konec
         if igra.poraz():
+            print(izpis_igre(igra))
             print(izpis_poraza(igra))
             return
 
         elif igra.zmaga():
+            print(izpis_igre(igra))
             print(izpis_zmage(igra))
             return
 
