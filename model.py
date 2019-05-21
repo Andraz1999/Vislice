@@ -6,6 +6,7 @@ PRAVILNA_CRKA = '+'
 PONOVLJENA_CRKA = '0'
 NAPACNA_CRKA = '-'
 
+ZACETEK = 'S'
 ZMAGA = 'W'
 PORAZ = 'X'
 
@@ -92,4 +93,37 @@ def nova_igra():
     geslo = random.choice(bazen_besed)
     geslo = geslo.upper()
     return Igra(geslo, [])
+
+class Vislice:
+    def __init__(self):
+        # v slovarju ugre ima vsaka igra svoj ID
+        # ID je celo število
+        self.igre = {} 
+        return
+    
+    def prost_id_igre(self):
+        if self.igre == {}:
+            return 0
+        else:
+            # preverimo katero od prvih n+1 števil
+            # še ni uporabljeno za ID 'n' iger 
+            for i in range(len(self.igre) + 1):
+                if i not in self.igre.keys():
+                    return i
+
+    def nova_igra(self):
+        # naredi novo igro z naključnim geslom
+        igra = nova_igra()
+    
+        # shrani(ZACETEK, igra) v slovar z novim ID
+        id = self.prost_id_igre()
+        self.igre[id] = (igra, ZACETEK)
+        return id
+
+    def ugibaj(self, id_igre, crka):
+        (igra, _) = self.igre[id_igre]
+        nov_poskus = igra.ugibaj(crka)
+        # shrani rezultat poskusa v slovar
+        self.igre[id_igre] = (igra, nov_poskus)
+        return
 
