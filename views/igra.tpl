@@ -41,7 +41,7 @@
 <form action="/igra/" method="post">
   <button type="submit">Nova igra</button>
 </form>
-!!!LUUUUZER! A si mogoce hotel {{igra.geslo}}?
+Žal ti ni uspelo, rešitev je {{igra.geslo}}.
 
   
   % else:
