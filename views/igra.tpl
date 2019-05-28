@@ -1,9 +1,6 @@
 % import model
+% rebase('base.tpl')
 
-<!DOCTYPE html>
-<html>
-<title> Vislice </title>
-<body>
 
   <h1>Vislice ID: {{id_igre}}</h1>
 
@@ -33,23 +30,22 @@
   <img src={{ime_slike}} alt="Obesanje">
 </blockquote>
 % if poskus == model.ZMAGA:  
-<form action="/igra/" method="post">
+<form action="/nova_igra/" method="post">
   <button type="submit">Nova igra</button>
 </form>
 !!!ZMAGAL SI!!!
 % elif poskus == model.PORAZ:
-<form action="/igra/" method="post">
+<form action="/nova_igra/" method="post">
   <button type="submit">Nova igra</button>
 </form>
 Žal ti ni uspelo, rešitev je {{igra.geslo}}.
 
   
   % else:
-  <form action="/igra/{{id_igre}}" method="POST">
+  <form action="/igra/" method="POST">
   <input type="text" name="poskus" placeholder="Tu notri napiši eno črko">
   <input type="submit" value="Ugibaj">
   </form>
   % end
-</body>
 
-</html>
+

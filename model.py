@@ -1,5 +1,5 @@
 # Definiramo konstante
-
+import json
 STEVILO_DOVOLJENIH_NAPAK = 10
 
 PRAVILNA_CRKA = '+'
@@ -95,10 +95,11 @@ def nova_igra():
     return Igra(geslo, [])
 
 class Vislice:
-    def __init__(self):
+    def __init__(self, datoteka_s_stanjem):
         # v slovarju ugre ima vsaka igra svoj ID
         # ID je celo število
         self.igre = {} 
+        self.datoteka_s_stanjem = datoteka_s_stanjem
         return
     
     def prost_id_igre(self):
@@ -112,18 +113,45 @@ class Vislice:
                     return i
 
     def nova_igra(self):
+        self.nalozi_igre_iz_datotek()
         # naredi novo igro z naključnim geslom
         igra = nova_igra()
     
         # shrani(ZACETEK, igra) v slovar z novim ID
         id = self.prost_id_igre()
         self.igre[id] = (igra, ZACETEK)
+        self.zapisi_igre_v_datoteko()
         return id
 
     def ugibaj(self, id_igre, crka):
+        self.nalozi_igre_iz_datotek()
         (igra, _) = self.igre[id_igre]
         nov_poskus = igra.ugibaj(crka)
         # shrani rezultat poskusa v slovar
         self.igre[id_igre] = (igra, nov_poskus)
+        self.zapisi_igre_v_datoteko()
         return
+
+    def nalozi_igre_iz_datotek(self):
+        with open(self.datoteka_s_stanjem) as datoteka:
+            zakodirane_igre = json.load(datoteka) # dobimo slovar z (geslo, crke)
+            igre = {}
+            for id_igre in zakodirane_igre:
+                igra = zakodirane_igre[id_igre]
+                igre[int(id_igre)] = (Igra(igra['geslo'], igra['crke']), igra['poskus'])
+            self.igre = igre
+        return 
+
+
+
+    def zapisi_igre_v_datoteko(self):
+        with open(self.datoteka_s_stanjem, 'w') as datoteka:
+            zakodirane_igre = {}
+            for id_igre in self.igre:
+                (igra, poskus) = self.igre[id_igre]
+                zakodirane_igre[id_igre] = {'geslo': igra.geslo, 'crke': igra.crke, 'poskus': poskus}
+            json.dump(zakodirane_igre, datoteka)
+        return 
+
+
 
